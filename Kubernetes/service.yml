@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sassapp-service
+  labels:
+    app: sassapp
+spec:
+  selector:
+    app: sassapp
+  ports:
+    - protocol: TCP
+      port: 80        # Exposed service port
+      targetPort: 3000 # Maps to containerPort in deployment
+  type: LoadBalancer   # Exposes app via external LoadBalancer (ELB on AWS/EKS)
+

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sassapp-deployment
+  labels:
+    app: sassapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sassapp
+  template:
+    metadata:
+      labels:
+        app: sassapp
+    spec:
+      containers:
+        - name: sassapp
+          image: souravmiranam/sassapp:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000   # Assuming your Node.js app runs on port 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
